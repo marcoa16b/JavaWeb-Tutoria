@@ -7,27 +7,34 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class HandleDB {
-    
-    // Variable para almacenar la conexión
+
+    // Variables para almacenar la conexión
     private Connection connection;
     private Statement statement;
-    
+
+    // Constructor
     public HandleDB(String url, String user, String password) {
         try {
             // Cargar el driver JDBC de MySQL
             Class.forName("com.mysql.jdbc.Driver");
-            
+
             // Establecer la conexion con la base de datos
             connection = DriverManager.getConnection(url, user, password);
             statement = connection.createStatement();
             System.out.println("Conexion a la base de datos establecida con exito.");
-            
+
         } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("Error al intentar conectar con la base de datos... ");
             e.printStackTrace();
         }
     }
-    
-    // Método para ejecutar consultas SELECT
+
+    /**
+     * Método para ejecutar consultas de selección (SELECT)
+     * 
+     * @param query Consulta a ejecutar
+     * @return ResultSet con los resultados de la consulta
+     */
     public ResultSet ejecutarConsulta(String query) {
         try {
             return statement.executeQuery(query);
@@ -36,9 +43,14 @@ public class HandleDB {
         }
         return null;
     }
-    
-    // Método para ejecutar consultas de actualizacion (INSERT, UPDATE, DELETE)
-    public int ejecutarActualización(String query) {
+
+    /**
+     * Método para ejecutar consultas de actualización (INSERT, UPDATE, DELETE)
+     * 
+     * @param query Consulta a ejecutar
+     * @return número de filas afectadas
+     */
+    public int ejecutarActualizacion(String query) {
         try {
             return statement.executeUpdate(query);
         } catch (SQLException e) {
@@ -46,8 +58,12 @@ public class HandleDB {
         }
         return -1;
     }
-    
-    // Método para cerrar la conexión con la base de datos
+
+    /**
+     * Método para cerrar la conexión con la base de datos
+     * 
+     * Importante cerrar la conexión una vez que se terminen de hacer las consultas
+     */
     public void cerrarConexion() {
         try {
             if (statement != null)

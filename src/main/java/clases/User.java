@@ -2,7 +2,7 @@ package clases;
 
 public class User {
     
-    private int user_id;
+    private int userId;
     private String username;
     private String password;
     private String role;
@@ -10,15 +10,15 @@ public class User {
     public User() {
     }
 
-    public User(int user_id, String username, String password, String role) {
-        this.user_id = user_id;
+    public User(int userId, String username, String password, String role) {
+        this.userId = userId;
         this.username = username;
         this.password = password;
         this.role = role;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
     public String getUsername() {
@@ -33,8 +33,8 @@ public class User {
         return role;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public void setUsername(String username) {

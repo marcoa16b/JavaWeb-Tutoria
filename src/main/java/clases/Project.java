@@ -1,23 +1,24 @@
 package clases;
 
 public class Project {
-    
-    private int project_id;
+
+    private int projectId;
     private String name;
     private String description;
 
     public Project() {
     }
 
-    public Project(int project_id, String name, String description) {
-        this.project_id = project_id;
+    public Project(int projectId, String name, String description) {
+        this.projectId = projectId;
         this.name = name;
         this.description = description;
     }
 
     // Getters
-    public int getProject_id() {
-        return project_id;
+
+    public int getProjectId() {
+        return projectId;
     }
 
     public String getName() {
@@ -27,11 +28,11 @@ public class Project {
     public String getDescription() {
         return description;
     }
-    
+
     // Setters
 
-    public void setProject_id(int project_id) {
-        this.project_id = project_id;
+    public void setProjectId(int projectId) {
+        this.projectId = projectId;
     }
 
     public void setName(String name) {
@@ -41,5 +42,5 @@ public class Project {
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
 }

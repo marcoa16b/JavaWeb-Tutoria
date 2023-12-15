@@ -1,10 +1,10 @@
 servlets\SVProyects.class
 dev\HandleDB.class
 logica\LogicHandler.class
-servlets\SVAuth.class
 clases\User.class
 clases\Project.class
 dev\Controller.class
 dev\testing\JakartaRestConfiguration.class
 dev\testing\resources\JakartaEE10Resource.class
+servlets\SVLogin.class
 clases\Task.class

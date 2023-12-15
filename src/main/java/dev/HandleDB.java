@@ -16,7 +16,7 @@ public class HandleDB {
     public HandleDB(String url, String user, String password) {
         try {
             // Cargar el driver JDBC de MySQL
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
             // Establecer la conexion con la base de datos
             connection = DriverManager.getConnection(url, user, password);

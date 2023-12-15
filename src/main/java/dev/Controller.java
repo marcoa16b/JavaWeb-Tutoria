@@ -18,10 +18,10 @@ public class Controller {
     private String username = "root";
     private String password = "toor"; // contraseña que tenga en Workbench
 
-    HandleDB db;
+    // HandleDB db;
 
     public Controller() {
-        db = new HandleDB(url, username, password);
+        //db = new HandleDB(url, username, password);
     }
 
     // Métodos para la tabla projects
@@ -30,12 +30,13 @@ public class Controller {
      * Crea un proyecto en la base de datos
      * 
      * @param proyecto Proyecto a crear
-     * @return numero de filas afectadas o -1 si hubo un error
      */
-    public int CrearProyecto(Project proyecto) {
+    public void CrearProyecto(Project proyecto) {
+        HandleDB db = new HandleDB(url, username, password);
         String query = String.format("INSERT INTO projects (name, description) VALUES ('%s', '%s')",
                 proyecto.getName(), proyecto.getDescription());
-        return db.ejecutarActualizacion(query);
+        db.ejecutarActualizacion(query);
+        db.cerrarConexion();
     }
 
     /**
@@ -44,6 +45,7 @@ public class Controller {
      * @return Lista de proyectos
      */
     public List<Project> obtenerProyectos() {
+        HandleDB db = new HandleDB(url, username, password);
         List<Project> proyectos = new ArrayList<>();
         ResultSet resultSet = db.ejecutarConsulta("SELECT * FROM projects");
         try {
@@ -57,6 +59,7 @@ public class Controller {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        db.cerrarConexion();
         return proyectos;
     }
 
@@ -68,9 +71,11 @@ public class Controller {
      * @param usuario Usuario a crear
      */
     public void crearUsuario(User usuario) {
+        HandleDB db = new HandleDB(url, username, password);
         String query = String.format("INSERT INTO users (username, password, role) VALUES ('%s', '%s', '%s')",
                 usuario.getUsername(), usuario.getPassword(), usuario.getRole());
         db.ejecutarActualizacion(query);
+        db.cerrarConexion();
     }
 
     /**
@@ -79,6 +84,7 @@ public class Controller {
      * @return Lista de usuarios
      */
     public List<User> obtenerUsuarios() {
+        HandleDB db = new HandleDB(url, username, password);
         List<User> usuarios = new ArrayList<>();
         ResultSet resultSet = db.ejecutarConsulta("SELECT * FROM users");
         try {
@@ -93,6 +99,7 @@ public class Controller {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        db.cerrarConexion();
         return usuarios;
     }
 
@@ -104,11 +111,13 @@ public class Controller {
      * @param tarea Tarea a crear
      */
     public void crearTarea(Task tarea) {
+        HandleDB db = new HandleDB(url, username, password);
         String query = String.format("INSERT INTO tasks (project_id, user_id, title, description, status, due_date) " +
                 "VALUES (%d, %d, '%s', '%s', '%s', '%s')",
                 tarea.getProjectId(), tarea.getUserId(), tarea.getTitle(), tarea.getDescription(),
                 tarea.getStatus(), tarea.getDueDate());
         db.ejecutarActualizacion(query);
+        db.cerrarConexion();
     }
 
     /**
@@ -117,6 +126,7 @@ public class Controller {
      * @return Lista de tareas
      */
     public List<Task> obtenerTareas() {
+        HandleDB db = new HandleDB(url, username, password);
         List<Task> tareas = new ArrayList<>();
         ResultSet resultSet = db.ejecutarConsulta("SELECT * FROM tasks");
         try {
@@ -134,6 +144,7 @@ public class Controller {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        db.cerrarConexion();
         return tareas;
     }
 

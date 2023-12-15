@@ -2,7 +2,7 @@
 
 ## Sobre el proyecto:
 
-El Query para crear la base de datos esta en "/resourses/Database-creation-query.md".
+El Query para crear la base de datos esta [aquí](https://github.com/marcoa16b/JavaWeb-Tutoria/blob/main/resourses/Database-creation-query.md).
 
 En la carpeta `clases` se encuentran los objetos de las tablas ("projects", "users", "tasks").
 
